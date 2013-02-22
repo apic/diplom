@@ -10,7 +10,7 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'Номер контракта'); ?>
+		<?php echo $form->labelEx($model,'username'); ?>
 		<?php echo $form->textField($model,'username'); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>

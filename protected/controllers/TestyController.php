@@ -2,8 +2,8 @@
 
 class TestyController extends Controller
 {
-   
-	/**
+    public $a;
+    /**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
@@ -79,14 +79,17 @@ class TestyController extends Controller
 //			'model'=>$model,
 //		));
 //	}
+    
     public function actionCreate(){
+        $a = Yii::app() -> session['vop'];
+        
         $model= new Testy;
         if(isset($_POST['Testy'])){
-           
-        
-                $model->attributes=$_POST['Testy'];
+            $model->attributes=$_POST['Testy'];
+            Yii::app()->session['vop']=$model->num;      
+                
            if($model->save())
-		$this->redirect(array('view','id'=>$model->id));
+		$this->redirect(array('/Voprosy/create','id'=>$model->id));
     
         }
         $this->render('create',array('model'=>$model));

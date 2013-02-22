@@ -9,7 +9,10 @@
  */
 class Testy extends CActiveRecord
 {
-	/**
+    public $num;
+    
+
+    /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Testy the static model class
@@ -35,7 +38,7 @@ class Testy extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
+			array('name, num', 'required'),
 			array('name', 'length', 'max'=>250),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -60,8 +63,10 @@ class Testy extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
+			'id' => '№',
+			'name' => 'Название теста',
+                        'num' => 'Количество вопросов'
+                        
 		);
 	}
 

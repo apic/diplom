@@ -73,16 +73,18 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'login' => 'Login',
-			'pass' => 'Pass',
-			'name' => 'Name',
-			'lastname' => 'Lastname',
-			'phone' => 'Phone',
-			'email' => 'Email',
+			'login' => 'Номер контракта',
+			'pass' => 'Пароль',
+			'name' => 'Имя',
+			'lastname' => 'Фамилия',
+			'phone' => 'Телефон',
+			'email' => 'E-mail',
+                        'role' => 'Роль',
+                        
 		);
 	}
         public static function getRoles(){
-            return array(0=>'Admin',1=>'Teacher',2=>'Student');
+            return array(0=>'Администратор',1=>'Учитель',2=>'Студент');
         }
         public static function curentRoles($id){
             $user = Users::model()->findByPk($id);

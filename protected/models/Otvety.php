@@ -62,8 +62,8 @@ class Otvety extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'voprosy_id' => 'Voprosy',
-			'otvety' => 'Otvety',
+			'voprosy_id' => 'Вопросы',
+			'otvety' => 'Ответы',
 		);
 	}
 
