@@ -13,20 +13,18 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo CHtml::beginForm(); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'voprosy_id'); ?>
-		<?php echo $form->textField($model,'voprosy_id'); ?>
-		<?php echo $form->error($model,'voprosy_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'otvety'); ?>
-		<?php echo $form->textArea($model,'otvety',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'otvety'); ?>
-	</div>
-
+        <div class="row">
+          <?php 
+          $a=Yii::app()->session['otv'];
+          for ($x=0, $i=0; $x++<$a,$i++<$a;){
+                 echo 'Вопрос № '.$i;
+                 echo '<br>';
+		 echo CHtml::activeTextArea($model, 'voprosy'); 
+                 echo '<br>';}
+                 ?>
+        </div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

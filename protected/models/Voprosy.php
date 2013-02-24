@@ -8,8 +8,10 @@
  * @property string $test_id
  * @property string $vopros
  */
+
 class Voprosy extends CActiveRecord
 {
+    public $voprosy;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.

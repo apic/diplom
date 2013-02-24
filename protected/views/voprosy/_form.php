@@ -13,15 +13,15 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo CHtml::beginForm(); ?>
 
         <div class="row">
           <?php 
           $a=Yii::app()->session['vop'];
-          for ($x=0; $x++<$a;){
-		 echo CHtml::label($model,'vopros');
+          for ($x=0, $i=0; $x++<$a,$i++<$a;){
+                 echo 'Вопрос № '.$i;
                  echo '<br>';
-		 echo CHtml::textField($model,'vopros'); 
+		 echo CHtml::activeTextArea($model, 'voprosy'); 
                  echo '<br>';}
 
 
