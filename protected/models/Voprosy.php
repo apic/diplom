@@ -5,13 +5,14 @@
  *
  * The followings are the available columns in table '{{voprosy}}':
  * @property integer $id
- * @property string $test_id
+ * @property integer $test_id
  * @property string $vopros
+ * @property integer $sum
  */
-
 class Voprosy extends CActiveRecord
 {
-    public $voprosy;
+     public $voprosy;
+     public $num;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -38,11 +39,11 @@ class Voprosy extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('test_id, vopros', 'required'),
-			array('test_id', 'length', 'max'=>50),
+			array('test_id, vopros, sum', 'required'),
+			array('test_id, sum', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, test_id, vopros', 'safe', 'on'=>'search'),
+			array('id, test_id, vopros, sum', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +67,7 @@ class Voprosy extends CActiveRecord
 			'id' => 'ID',
 			'test_id' => 'Test',
 			'vopros' => 'Vopros',
+			'sum' => 'Sum',
 		);
 	}
 
@@ -81,8 +83,9 @@ class Voprosy extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('test_id',$this->test_id,true);
+		$criteria->compare('test_id',$this->test_id);
 		$criteria->compare('vopros',$this->vopros,true);
+		$criteria->compare('sum',$this->sum);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

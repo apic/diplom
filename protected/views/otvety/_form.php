@@ -11,18 +11,26 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	
 
 	<?php echo CHtml::beginForm(); ?>
 
         <div class="row">
-          <?php 
-          $a=Yii::app()->session['otv'];
+          <?php
+           
+           $a=3;
+           
+           echo 'Правильный ответ следует отметить галочкой';
+           echo '<br>';
           for ($x=0, $i=0; $x++<$a,$i++<$a;){
-                 echo 'Вопрос № '.$i;
+                 echo 'Ответ № '.$i;
                  echo '<br>';
-		 echo CHtml::activeTextArea($model, 'voprosy'); 
-                 echo '<br>';}
+		 echo CHtml::activeTextfield($model, "[$i]otvety");
+                 echo '&nbsp;';
+                 echo CHtml::activeCheckBox($model, "[$i]variant");
+                 echo '<br>';
+                 
+          }
                  ?>
         </div>
 	<div class="row buttons">

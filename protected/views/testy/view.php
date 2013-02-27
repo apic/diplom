@@ -15,7 +15,7 @@ $this->menu=array(
 	array('label'=>'Добавить вопрос', 'url'=>array('/voprosy/create', 'id'=>$model->id)),
 );
 ?>
-<?php var_dump(  Yii::app()->session['vop']); ?>
+
 <h1>Обзор тестов<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(

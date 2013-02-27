@@ -7,8 +7,11 @@ class VoprosyController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
-	/**
+        public $value;
+        public $i; 
+        public $num;
+        
+        /**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -62,24 +65,26 @@ class VoprosyController extends Controller
 	 */
 	public function actionCreate($id)
 	{
-		$model=new Voprosy;
-                $model->test_id=$id;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Voprosy']))
-		{
-			$model->attributes=$_POST['Voprosy'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
-
+          $a = Yii::app()->session['vop'];
+          $model = new Voprosy;
+          $model->test_id = $id;
+                if (isset($_POST['Voprosy'])) {
+                $model->attributes = $_POST['Voprosy'];
+                Yii::app()->session['vop'] = $model->num;
+                foreach ($_POST['Voprosy'] as $row) {
+                    $mod = new Voprosy;
+                    $mod->test_id = $id;
+                    $mod->vopros = $row['voprosy'];
+                    $mod->sum = $row['sum'];
+                    if ($mod->save()) {
+                    }
+                }
+                $this->redirect(array('view', 'id'=>$model->id));
+                }
+            $this->render('create', array(
+            'model'=>$model,
+            ));
+        } 
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -94,7 +99,7 @@ class VoprosyController extends Controller
 
 		if(isset($_POST['Voprosy']))
 		{
-			$model->attributes=$_POST['Voprosy'];
+                    $model->attributes=$_POST['Voprosy'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

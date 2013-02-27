@@ -7,14 +7,18 @@
  * @property integer $id
  * @property integer $voprosy_id
  * @property string $otvety
+ * @property integer $true
  */
 class Otvety extends CActiveRecord
 {
-	/**
+    
+
+    /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Otvety the static model class
 	 */
+        public $variant;
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -36,11 +40,11 @@ class Otvety extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('voprosy_id, otvety', 'required'),
-			array('voprosy_id', 'numerical', 'integerOnly'=>true),
+			array('voprosy_id, otvety, true', 'required'),
+			array('voprosy_id, true', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, voprosy_id, otvety', 'safe', 'on'=>'search'),
+			array('id, voprosy_id, otvety, true', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +66,9 @@ class Otvety extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'voprosy_id' => 'Вопросы',
-			'otvety' => 'Ответы',
+			'voprosy_id' => 'Voprosy',
+			'otvety' => 'Otvety',
+			'true' => 'True',
 		);
 	}
 
@@ -81,6 +86,7 @@ class Otvety extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('voprosy_id',$this->voprosy_id);
 		$criteria->compare('otvety',$this->otvety,true);
+		$criteria->compare('true',$this->true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

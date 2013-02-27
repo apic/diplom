@@ -7,7 +7,7 @@ class OtvetyController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
+        public $a;
 	/**
 	 * @return array action filters
 	 */
@@ -60,19 +60,23 @@ class OtvetyController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id)
+       
+        public function actionCreate($id)
 	{
-		$model=new Otvety;
+                $model=new Otvety;
                 $model->voprosy_id=$id;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Otvety']))
-		{
-			$model->attributes=$_POST['Otvety'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+                              
+                    if(isset($_POST['Otvety'])){
+                        $model->attributes=$_POST['Otvety'];
+			foreach($_POST['Otvety'] as $row){
+                            $mod = new Otvety;
+                            $mod->voprosy_id=$id;
+                            $mod->otvety=$row['otvety'];
+                            $mod->true=$row['variant'];
+                            if($mod->save());
+                        }
+			$this->redirect(array('view','id'=>$model->id));
+                    }
 
 		$this->render('create',array(
 			'model'=>$model,
