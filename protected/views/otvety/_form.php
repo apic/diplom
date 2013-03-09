@@ -7,8 +7,9 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'otvety-form',
+	'id'=>'otvety-form', 
 	'enableAjaxValidation'=>false,
+    
 )); ?>
 
 	
@@ -18,7 +19,7 @@
         <div class="row">
           <?php
            
-           $a=3;
+          $a = $vopros->sum;
            
            echo 'Правильный ответ следует отметить галочкой';
            echo '<br>';

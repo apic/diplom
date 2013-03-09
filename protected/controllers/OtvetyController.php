@@ -8,6 +8,7 @@ class OtvetyController extends Controller
 	 */
 	public $layout='//layouts/column2';
         public $a;
+        public $vopros;
 	/**
 	 * @return array action filters
 	 */
@@ -63,9 +64,13 @@ class OtvetyController extends Controller
        
         public function actionCreate($id)
 	{
-                $model=new Otvety;
+            $vopros = Voprosy::model()->findByPk($id);
+                $vopros->sum;     
+            $model=new Otvety;
                 $model->voprosy_id=$id;
-                              
+                
+                               
+                                        
                     if(isset($_POST['Otvety'])){
                         $model->attributes=$_POST['Otvety'];
 			foreach($_POST['Otvety'] as $row){
@@ -80,6 +85,7 @@ class OtvetyController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+                    'vopros'=>$vopros,
 		));
 	}
 
