@@ -10,7 +10,7 @@
 class Testy extends CActiveRecord
 {
     public $num;
-    
+    public $list;
 
     /**
 	 * Returns the static model of the specified AR class.
@@ -38,14 +38,15 @@ class Testy extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, num', 'required'),
+			array('name, category, num', 'required'),
 			array('name', 'length', 'max'=>250),
+                        array('name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, category, name', 'safe', 'on'=>'search'),
 		);
 	}
-
+     
 	/**
 	 * @return array relational rules.
 	 */
@@ -64,7 +65,8 @@ class Testy extends CActiveRecord
 	{
 		return array(
 			'id' => '№',
-			'name' => 'Название теста',
+			'name' => 'Название предмета',
+                        'category' => 'Категория',
                         'num' => 'Количество вопросов'
                         
 		);
@@ -82,7 +84,8 @@ class Testy extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('category',$this->category,true);
+                $criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

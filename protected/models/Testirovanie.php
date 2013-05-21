@@ -9,6 +9,9 @@
  */
 class Testirovanie extends CActiveRecord
 {
+    public $total_correct_answers_count;
+    public $correct_answers_count;
+   
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -61,7 +64,8 @@ class Testirovanie extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+                        'category'=>'Дисциплина',
+			'name' => 'Тест',
 		);
 	}
 
@@ -78,6 +82,7 @@ class Testirovanie extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+                $criteria->compare('category',$this->category,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -1,13 +1,30 @@
 <?php
 /* @var $this TestirovanieController */
+/* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Testirovanie',
-);
+
+
+//$this->menu=array(
+//	array('label'=>'Create Testirovanie', 'url'=>array('create')),
+//	array('label'=>'Manage Testirovanie', 'url'=>array('admin')),
+//);
 ?>
-<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
 
-<p>
-	You may change the content of this page by modifying
-	the file <tt><?php echo __FILE__; ?></tt>.
-</p>
+<h2>Выберите дисциплину</h2>
+
+
+    
+    <?php 
+    
+    $cat=  Category::model()->findAll();
+        foreach ($cat as $category):?>
+
+<h5> 
+     <?php echo CHtml::link($category->category, array('Testirovanie/distsiplina', 'id'=>$category->id)); ?>
+</h5>
+   
+   <?php endforeach;?>
+
+    
+    
+    

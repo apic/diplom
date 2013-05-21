@@ -1,27 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "{{otvety}}".
+ * This is the model class for table "{{category}}".
  *
- * The followings are the available columns in table '{{otvety}}':
+ * The followings are the available columns in table '{{category}}':
  * @property integer $id
- * @property integer $voprosy_id
- * @property string $otvety
- * @property integer $true
+ * @property string $category
  */
-class Otvety extends CActiveRecord
+class Category extends CActiveRecord
 {
-    
-
+    public $list;
     /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Otvety the static model class
+	 * @return Category the static model class
 	 */
-        public $variant;
-        public $vopros;
-        public $check;
-        
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -32,7 +25,7 @@ class Otvety extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{otvety}}';
+		return '{{category}}';
 	}
 
 	/**
@@ -43,11 +36,11 @@ class Otvety extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('voprosy_id, otvety, true', 'required'),
-			array('voprosy_id, true', 'numerical', 'integerOnly'=>true),
+			array('category', 'required'),
+			array('category', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, voprosy_id, otvety, true', 'safe', 'on'=>'search'),
+			array('id, category', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,12 +62,21 @@ class Otvety extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'voprosy_id' => 'Voprosy',
-			'otvety' => 'Otvety',
-			'true' => 'True',
+			'category' => 'Category',
 		);
 	}
-
+   public static function getList()
+        {
+            $model=Category::model()->findAll(
+                    array('order'=>'category'));
+            
+            $list = CHtml::listData($model, 
+                'id', 'category');
+            return $list;
+        }
+        
+        
+        
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -87,9 +89,7 @@ class Otvety extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('voprosy_id',$this->voprosy_id);
-		$criteria->compare('otvety',$this->otvety,true);
-		$criteria->compare('true',$this->true);
+		$criteria->compare('category',$this->category,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

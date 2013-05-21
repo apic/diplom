@@ -19,13 +19,14 @@
           <?php 
           $a=Yii::app()->session['vop'];
           
-          for ($x=0, $i=0; $x++<$a,$i++<$a;){
+            for ($x=0, $i=0; $x++<$a,$i++<$a;){
                  echo 'Вопрос № '.$i;
                  echo '<br>';
                  echo CHtml::activeTextArea($model, "[$i]voprosy"); 
                  echo '<br>';
                  echo CHtml::activeTextField($model, "[$i]sum");
                  echo '<br>';
+          
           }
           ?>
         </div>

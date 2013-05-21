@@ -21,6 +21,11 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
         <div class="row">
+		<?php echo $form->labelEx($model,'category'); ?>
+                <?php echo $form->dropDownList($model, 'category', Category::getList()); ?>
+		
+	</div>
+        <div class="row">
 		<?php echo $form->labelEx($model,'num'); ?>
 		<?php echo $form->textField($model,'num',array('size'=>10,'maxlength'=>25)); ?>
 		<?php echo $form->error($model,'num'); ?>

@@ -63,16 +63,14 @@ class ResultController extends Controller
 	public function actionCreate()
 	{
 		$model=new Result;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Result']))
+                                            
+                if(isset($_POST['Result']))
 		{
 			$model->attributes=$_POST['Result'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
+
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -148,6 +146,7 @@ class ResultController extends Controller
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded
 	 */
+      
 	public function loadModel($id)
 	{
 		$model=Result::model()->findByPk($id);
